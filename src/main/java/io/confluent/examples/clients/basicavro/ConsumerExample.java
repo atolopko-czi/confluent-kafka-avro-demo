@@ -31,6 +31,8 @@ public class ConsumerExample {
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class);
         props.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
 
+        System.out.printf("Reader schema: %s%n", Payment.getClassSchema().toString(true));
+
         try (final KafkaConsumer<String, Payment> consumer = new KafkaConsumer<>(props)) {
             consumer.subscribe(Collections.singletonList(TOPIC));
 
@@ -39,7 +41,8 @@ public class ConsumerExample {
                 for (final ConsumerRecord<String, Payment> record : records) {
                     final String key = record.key();
                     final Payment value = record.value();
-                    System.out.printf("key = %s, value = %s%n", key, value);
+                    final String schema = record.value().getSchema().toString(true);
+                    System.out.printf("key = %s, value = %s, schema = %s%n", key, value, schema);
                 }
             }
 
