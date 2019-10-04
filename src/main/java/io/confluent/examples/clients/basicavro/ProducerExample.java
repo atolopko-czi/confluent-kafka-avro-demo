@@ -10,10 +10,13 @@ import org.apache.kafka.common.errors.SerializationException;
 
 import java.util.Collections;
 import java.util.Properties;
+import java.util.Random;
+import java.util.UUID;
 
 public class ProducerExample {
 
     private static final String TOPIC = "transactions";
+    public static final int PRODUCE_MESSAGE_COUNT = 10;
 
     @SuppressWarnings("InfiniteLoopStatement")
     public static void main(final String[] args) {
@@ -28,12 +31,12 @@ public class ProducerExample {
 
         try (KafkaProducer<String, Payment> producer = new KafkaProducer<String, Payment>(props)) {
 
-            for (long i = 0; i < 10; i++) {
-                final String orderId = "id" + Long.toString(i);
-                final Payment payment = new Payment(orderId, 1000.00, "region1");
+            for (long i = 0; i < PRODUCE_MESSAGE_COUNT; i++) {
+                final String orderId = "id" + UUID.randomUUID();
+                final Payment payment = new Payment(orderId, new Random().nextInt(10000) / 100.00, "region" + new Random().nextInt(4));
                 final ProducerRecord<String, Payment> record = new ProducerRecord<String, Payment>(TOPIC, payment.getId().toString(), payment);
                 producer.send(record);
-                Thread.sleep(1000L);
+                Thread.sleep(100L);
             }
 
             producer.flush();
