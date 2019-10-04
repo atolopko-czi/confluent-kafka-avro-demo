@@ -42,7 +42,8 @@ public class ConsumerExample {
                     final String key = record.key();
                     final Payment value = record.value();
                     final String schema = record.value().getSchema().toString(true);
-                    System.out.printf("key = %s, value = %s, schema = %s%n", key, value, schema);
+                    System.out.printf("key = %s, value = %s, %n", key, value);
+                    //System.out.printf("key = %s, value = %s, schema = %s%n", key, value, schema);
                 }
             }
 
