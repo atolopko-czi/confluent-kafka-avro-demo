@@ -31,6 +31,8 @@ public class ConsumerExample {
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class);
         props.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
 
+        System.out.printf("Reader schema: %s%n", Payment.getClassSchema().toString(true));
+
         try (final KafkaConsumer<String, Payment> consumer = new KafkaConsumer<>(props)) {
             consumer.subscribe(Collections.singletonList(TOPIC));
 
