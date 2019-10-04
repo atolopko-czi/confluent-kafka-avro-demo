@@ -11,7 +11,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
   </parent>
 
   <artifactId>java-client-avro-examples</artifactId>
-  <version>5.3.0-schema1</version>
+  <version>5.3.0-schema-v1</version>
 
   <packaging>jar</packaging>
   <properties>
