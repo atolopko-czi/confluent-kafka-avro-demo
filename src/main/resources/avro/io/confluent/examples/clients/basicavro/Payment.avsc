@@ -2,7 +2,7 @@
  "type": "record",
  "name": "Payment",
  "fields": [
-     {"name": "id", "type": "string"},
+     {"name": "id", "type": "string", "logicalType": "UUID" },
      {"name": "amount", "type": "double"}
  ]
 }
