@@ -30,7 +30,7 @@ public class ProducerExample {
 
             for (long i = 0; i < 10; i++) {
                 final String orderId = "id" + Long.toString(i);
-                final Payment payment = new Payment(orderId, 1000.00);
+                final Payment payment = new Payment(orderId, 1000.00, "region1");
                 final ProducerRecord<String, Payment> record = new ProducerRecord<String, Payment>(TOPIC, payment.getId().toString(), payment);
                 producer.send(record);
                 Thread.sleep(1000L);
