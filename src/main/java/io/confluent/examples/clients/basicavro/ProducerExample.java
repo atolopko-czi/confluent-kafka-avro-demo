@@ -16,7 +16,7 @@ import java.util.UUID;
 public class ProducerExample {
 
     private static final String TOPIC = "transactions";
-    public static final int PRODUCE_MESSAGE_COUNT = 10;
+    public static final int PRODUCE_MESSAGE_COUNT = 3;
 
     @SuppressWarnings("InfiniteLoopStatement")
     public static void main(final String[] args) {
