@@ -9,6 +9,8 @@ How to use these examples:
 
 ## Demo
 
+0. Install Confluent platform locally using Docker:
+    https://docs.confluent.io/current/quickstart/ce-docker-quickstart.html
 1. Produce messages for schema v1 (missing future "region" field):
     ```
     git co schema-v1 && mvn clean package exec:java -Dexec.mainClass=io.confluent.examples.clients.basicavro.ProducerExample
