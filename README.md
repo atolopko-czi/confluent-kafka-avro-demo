@@ -65,3 +65,9 @@ How to use these examples:
     * https://docs.confluent.io/current/schema-registry/develop/api.html#compatibility
     * https://docs.confluent.io/current/schema-registry/avro.html#compatibility-types
     * https://docs.confluent.io/current/schema-registry/avro.html#order-of-upgrading-clients
+* To view Avro-encoded messages using Kafka CLI tools:
+    ```
+    docker exec -it schema-registry bash
+    kafka-avro-console-consumer --bootstrap-server broker:29092 --offset earliest --topic transactions --partition 0
+    ```
+    (The Docker container `schema-registry` has the `kafka-avro-console-consumer` CLI installed)
