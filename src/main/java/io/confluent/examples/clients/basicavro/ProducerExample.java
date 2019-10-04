@@ -1,6 +1,8 @@
 package io.confluent.examples.clients.basicavro;
 
+import io.confluent.kafka.schemaregistry.avro.AvroCompatibilityLevel;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -28,6 +30,8 @@ public class ProducerExample {
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
+        // See https://docs.confluent.io/current/schema-registry/avro.html#using-compatibility-types
+        props.put("avro.compatibility.level", AvroCompatibilityLevel.FULL_TRANSITIVE);
 
         try (KafkaProducer<String, Payment> producer = new KafkaProducer<String, Payment>(props)) {
 
@@ -40,7 +44,7 @@ public class ProducerExample {
             }
 
             producer.flush();
-            System.out.printf("Successfully produced 10 messages to a topic called %s%n", TOPIC);
+            System.out.printf("Successfully produced %d messages to a topic called %s%n", PRODUCE_MESSAGE_COUNT, TOPIC);
 
         } catch (final SerializationException e) {
             e.printStackTrace();
