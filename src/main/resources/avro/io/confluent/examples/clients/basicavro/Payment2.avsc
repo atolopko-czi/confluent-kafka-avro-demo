@@ -4,6 +4,6 @@
  "fields": [
      {"name": "id", "type": "string", "logicalType": "UUID"},
      {"name": "amount", "type": "double"},
-     {"name": "region", "type": "string", "default": ""}
+     {"name": "region", "type": "string", "default": "NONE"}
  ]
 }
