@@ -33,9 +33,9 @@ How to use these examples:
     org.apache.kafka.common.errors.SerializationException: Error registering Avro schema: {"type":"record","name":"Payment","namespace":"io.confluent.examples.clients.basicavro","fields":[{"name":"id","type":"string","logicalType":"UUID"},{"name":"amount","type":"double"},{"name":"region","type":"string"}]}
     Caused by: io.confluent.kafka.schemaregistry.client.rest.exceptions.RestClientException: Schema being registered is incompatible with an earlier schema; error code: 409
     ```
-4. Consume messages for schema v2:
+4. Consume schema v1 messages for schema v2:
     ```
-    git co schema-v1 && mvn clean package exec:java -Dexec.mainClass=io.confluent.examples.clients.basicavro.ConsumerExample
+    git co schema-v2 && mvn clean package exec:java -Dexec.mainClass=io.confluent.examples.clients.basicavro.ConsumerExample
     ```
     Note that consumer accepts schema v1 messages, using default value.
 
